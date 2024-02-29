@@ -14,13 +14,13 @@ public enum FileUploadBizEnum {
 
     USER_AVATAR("用户头像", "user_avatar");
 
-    private final String text;
-
     private final String value;
 
-    FileUploadBizEnum(String text, String value) {
-        this.text = text;
+    private final String code;
+
+    FileUploadBizEnum(String value, String code) {
         this.value = value;
+        this.code = code;
     }
 
     /**
@@ -29,7 +29,7 @@ public enum FileUploadBizEnum {
      * @return
      */
     public static List<String> getValues() {
-        return Arrays.stream(values()).map(item -> item.value).collect(Collectors.toList());
+        return Arrays.stream(values()).map(item -> item.code).collect(Collectors.toList());
     }
 
     /**
@@ -43,18 +43,18 @@ public enum FileUploadBizEnum {
             return null;
         }
         for (FileUploadBizEnum anEnum : FileUploadBizEnum.values()) {
-            if (anEnum.value.equals(value)) {
+            if (anEnum.code.equals(value)) {
                 return anEnum;
             }
         }
         return null;
     }
 
-    public String getValue() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
-    public String getText() {
-        return text;
+    public String getValue() {
+        return value;
     }
 }

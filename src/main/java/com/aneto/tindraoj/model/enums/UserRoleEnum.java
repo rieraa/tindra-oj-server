@@ -16,13 +16,13 @@ public enum UserRoleEnum {
     ADMIN("管理员", "admin"),
     BAN("被封号", "ban");
 
-    private final String text;
-
     private final String value;
 
-    UserRoleEnum(String text, String value) {
-        this.text = text;
+    private final String code;
+
+    UserRoleEnum(String value, String code) {
         this.value = value;
+        this.code = code;
     }
 
     /**
@@ -31,7 +31,7 @@ public enum UserRoleEnum {
      * @return
      */
     public static List<String> getValues() {
-        return Arrays.stream(values()).map(item -> item.value).collect(Collectors.toList());
+        return Arrays.stream(values()).map(item -> item.code).collect(Collectors.toList());
     }
 
     /**
@@ -45,18 +45,18 @@ public enum UserRoleEnum {
             return null;
         }
         for (UserRoleEnum anEnum : UserRoleEnum.values()) {
-            if (anEnum.value.equals(value)) {
+            if (anEnum.code.equals(value)) {
                 return anEnum;
             }
         }
         return null;
     }
 
-    public String getValue() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
-    public String getText() {
-        return text;
+    public String getValue() {
+        return value;
     }
 }
