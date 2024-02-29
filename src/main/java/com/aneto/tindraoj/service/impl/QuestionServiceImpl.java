@@ -117,13 +117,16 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     }
 
 
-
-    // todo ！这里的用处没搞懂
+    /**
+     * 将题目对象转换为题目视图对象
+     * @param question 题目对象
+     * @return 题目视图对象
+     */
     @Override
     public QuestionVO getQuestionVO(Question question, HttpServletRequest request) {
+        // 此处转换tags, judgeCase, judgeConfig
         QuestionVO questionVO = QuestionVO.objToVo(question);
-        long questionId = question.getId();
-        // 1. 关联查询用户信息
+        // 关联查询用户信息
         Long userId = question.getCreatorId();
         User user = null;
         if (userId != null && userId > 0) {
