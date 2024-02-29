@@ -46,7 +46,6 @@ public class UserController {
     @Resource
     private WxOpenConfig wxOpenConfig;
 
-    // region 登录相关
 
     /**
      * 用户注册

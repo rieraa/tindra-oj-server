@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户视图（脱敏）
+ * 用户视图（安全信息）
  *
  */
 @Data
