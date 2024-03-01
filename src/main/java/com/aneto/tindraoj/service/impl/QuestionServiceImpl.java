@@ -29,9 +29,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
-* @author ameee
-* @description 针对表【question(题目)】的数据库操作Service实现
-* @createDate 2024-02-26 15:01:26
+* 题目服务实现
 */
 @Service
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
@@ -42,8 +40,7 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
 
 
     /**
-     * 校验题目合法性
-     *
+     * 验证题目的合法性
      * @param question 题目
      * @param add      判断是否是新增
      */
@@ -82,9 +79,10 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     }
 
     /**
-     * 获取查询包装类（根据查询条件来包装一个类进行对应题目的查询）
+     * 获取查询包装类（用户根据哪些字段查询，根据前端传来的请求对象，得到 mybatis 框架支持的查询 QueryWrapper 类）
      * @param questionQueryRequest 具体的请求参数（根据哪些条件来进行查询）
-     * @return
+     * @return 查询包装类(queryWrapper)
+     *
      */
     @Override
     public QueryWrapper<Question> getQueryWrapper(QuestionQueryRequest questionQueryRequest) {
@@ -96,7 +94,6 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
         String title = questionQueryRequest.getTitle();
         String content = questionQueryRequest.getContent();
         List<String> tags = questionQueryRequest.getTags();
-        String answer = questionQueryRequest.getAnswer();
         Long creatorId = questionQueryRequest.getCreatorId();
 
         String sortField = questionQueryRequest.getSortField();
