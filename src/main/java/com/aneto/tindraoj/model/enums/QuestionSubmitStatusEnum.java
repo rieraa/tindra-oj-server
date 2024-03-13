@@ -1,6 +1,5 @@
 package com.aneto.tindraoj.model.enums;
 
-import lombok.Data;
 import org.apache.commons.lang3.ObjectUtils;
 
 /**
@@ -10,7 +9,7 @@ import org.apache.commons.lang3.ObjectUtils;
  *
  */
 
-public enum JudgeStatusEnum {
+public enum QuestionSubmitStatusEnum {
 
     WAITING("等待中", 0),
     IN_QUEUE("判题队列中", 1),
@@ -21,7 +20,7 @@ public enum JudgeStatusEnum {
     private final String value;
     private final int code;
 
-    JudgeStatusEnum(String value, int code) {
+    QuestionSubmitStatusEnum(String value, int code) {
         this.value = value;
         this.code = code;
     }
@@ -40,13 +39,13 @@ public enum JudgeStatusEnum {
      * @param code
      * @return
      */
-    public static JudgeStatusEnum getEnumByValue(Integer code) {
+    public static QuestionSubmitStatusEnum getEnumByValue(Integer code) {
         if (ObjectUtils.isEmpty(code)) {
             return null;
         }
-        for (JudgeStatusEnum judgeStatusEnum : JudgeStatusEnum.values()) {
-            if (judgeStatusEnum.code == code) {
-                return judgeStatusEnum;
+        for (QuestionSubmitStatusEnum questionSubmitStatusEnum : QuestionSubmitStatusEnum.values()) {
+            if (questionSubmitStatusEnum.code == code) {
+                return questionSubmitStatusEnum;
             }
         }
         return null;

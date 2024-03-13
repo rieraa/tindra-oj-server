@@ -3,13 +3,14 @@ package com.aneto.tindraoj.service.impl;
 import com.aneto.tindraoj.common.ErrorCode;
 import com.aneto.tindraoj.constant.CommonConstant;
 import com.aneto.tindraoj.exception.BusinessException;
+import com.aneto.tindraoj.judge.JudgeService;
 import com.aneto.tindraoj.mapper.QuestionSubmitMapper;
 import com.aneto.tindraoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
 import com.aneto.tindraoj.model.dto.questionsubmit.QuestionSubmitRequest;
 import com.aneto.tindraoj.model.entity.Question;
 import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import com.aneto.tindraoj.model.entity.User;
-import com.aneto.tindraoj.model.enums.JudgeStatusEnum;
+import com.aneto.tindraoj.model.enums.QuestionSubmitStatusEnum;
 import com.aneto.tindraoj.model.vo.QuestionSubmitVO;
 import com.aneto.tindraoj.service.QuestionService;
 import com.aneto.tindraoj.service.QuestionSubmitService;
@@ -21,16 +22,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
-* @author ameee
 * @description 针对表【question_submit(题目提交)】的数据库操作Service实现
-* @createDate 2024-02-26 15:02:34
 */
 @Service
 public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper, QuestionSubmit>
@@ -40,6 +41,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Resource
     private UserService userService;
+
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
 
     /**
      * 提交题目
@@ -71,6 +76,12 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if (!flag) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "提交题目插入失败");
         }
+        // 异步判题
+        Long questionSubmitId = questionSubmit.getId();
+        CompletableFuture.runAsync(() -> {
+            judgeService.judgeCode(questionSubmitId);
+            // todo 判题
+        });
         return questionSubmit.getId();
     }
 
@@ -98,7 +109,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         queryWrapper.eq(StringUtils.isNotBlank(language), "language", language);
         queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
         queryWrapper.eq(ObjectUtils.isNotEmpty(questionId), "questionId", questionId);
-        queryWrapper.eq(JudgeStatusEnum.getEnumByValue(status) != null, "status", status);
+        queryWrapper.eq(QuestionSubmitStatusEnum.getEnumByValue(status) != null, "status", status);
         queryWrapper.eq("isDelete", false);
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
                 sortField);
