@@ -17,7 +17,6 @@ spring:
     # 30 天过期
     timeout: 2592000
   # 数据库配置
-  # todo 需替换配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/tindraoj
@@ -30,12 +29,6 @@ spring:
   #    host: localhost
   #    port: 6379
   #    timeout: 5000
-  #    password: 123456
-  # Elasticsearch 配置
-  # todo 需替换配置，然后取消注释
-  #  elasticsearch:
-  #    uris: http://localhost:9200
-  #    username: root
   #    password: 123456
   # 文件上传
   servlet:
@@ -97,3 +90,7 @@ springdoc:
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
   enable: true
+
+# sandbox配置
+sandbox:
+  type: test
