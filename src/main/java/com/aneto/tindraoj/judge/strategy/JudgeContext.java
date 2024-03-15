@@ -1,7 +1,7 @@
 package com.aneto.tindraoj.judge.strategy;
 
 import com.aneto.tindraoj.model.dto.jundge.JudgeCase;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.entity.Question;
 import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import lombok.Data;

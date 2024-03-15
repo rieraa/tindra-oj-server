@@ -3,7 +3,7 @@ package com.aneto.tindraoj.judge.strategy;
 import cn.hutool.json.JSONUtil;
 import com.aneto.tindraoj.model.dto.jundge.JudgeCase;
 import com.aneto.tindraoj.model.dto.jundge.JudgeConfig;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.entity.Question;
 import com.aneto.tindraoj.model.enums.JudgeInfoEnum;
 

@@ -1,7 +1,7 @@
 package com.aneto.tindraoj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

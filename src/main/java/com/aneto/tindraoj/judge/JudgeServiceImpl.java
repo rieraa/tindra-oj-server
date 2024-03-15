@@ -10,7 +10,7 @@ import com.aneto.tindraoj.judge.sandbox.model.ExecuteCodeRequest;
 import com.aneto.tindraoj.judge.sandbox.model.ExecuteCodeResponse;
 import com.aneto.tindraoj.judge.strategy.JudgeContext;
 import com.aneto.tindraoj.model.dto.jundge.JudgeCase;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.entity.Question;
 import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import com.aneto.tindraoj.model.enums.QuestionSubmitStatusEnum;

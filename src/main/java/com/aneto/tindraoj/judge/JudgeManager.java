@@ -3,7 +3,7 @@ package com.aneto.tindraoj.judge;
 import com.aneto.tindraoj.judge.strategy.DefaultJudgeStrategy;
 import com.aneto.tindraoj.judge.strategy.JudgeContext;
 import com.aneto.tindraoj.judge.strategy.JudgeStrategy;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import org.springframework.stereotype.Service;
 

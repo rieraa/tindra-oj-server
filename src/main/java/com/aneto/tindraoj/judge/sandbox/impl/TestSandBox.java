@@ -3,7 +3,7 @@ package com.aneto.tindraoj.judge.sandbox.impl;
 import com.aneto.tindraoj.judge.sandbox.SandBox;
 import com.aneto.tindraoj.judge.sandbox.model.ExecuteCodeRequest;
 import com.aneto.tindraoj.judge.sandbox.model.ExecuteCodeResponse;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 import com.aneto.tindraoj.model.enums.JudgeInfoEnum;
 import com.aneto.tindraoj.model.enums.QuestionSubmitStatusEnum;
 

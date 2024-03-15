@@ -1,6 +1,6 @@
 package com.aneto.tindraoj.judge.strategy;
 
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
+import com.aneto.tindraoj.judge.sandbox.model.JudgeInfo;
 
 /**
  * 判题策略

@@ -1,4 +1,4 @@
-package com.aneto.tindraoj.model.dto.jundge;
+package com.aneto.tindraoj.judge.sandbox.model;
 
 import lombok.Data;
 
