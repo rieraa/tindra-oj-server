@@ -1,7 +1,5 @@
 package com.aneto.tindraoj.judge.sandbox.model;
 
-import com.aneto.tindraoj.model.dto.jundge.JudgeConfig;
-import com.aneto.tindraoj.model.dto.jundge.JudgeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
