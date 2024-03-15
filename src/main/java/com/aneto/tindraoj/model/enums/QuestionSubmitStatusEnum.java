@@ -14,7 +14,7 @@ public enum QuestionSubmitStatusEnum {
     WAITING("等待中", 0),
     IN_QUEUE("判题队列中", 1),
     COMPLETED("已完成", 2),
-    FAIL("提交失败", 3);
+    FAIL("代码运行错误", 3);
 
 
     private final String value;
