@@ -70,6 +70,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         questionSubmit.setQuestionId(questionSubmitRequest.getQuestionId());
         // todo 题目初始状态
         questionSubmit.setStatus(0);
+        questionSubmit.setStatus(QuestionSubmitStatusEnum.WAITING.getCode());
         questionSubmit.setJudgeInfo("{}");
         QueryWrapper<QuestionSubmit> questionSubmitQueryWrapper = new QueryWrapper<>(questionSubmit);
         boolean flag = this.save(questionSubmit);

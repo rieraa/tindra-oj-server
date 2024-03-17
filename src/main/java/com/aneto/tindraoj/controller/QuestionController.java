@@ -15,10 +15,15 @@ import com.aneto.tindraoj.model.dto.question.QuestionAddRequest;
 import com.aneto.tindraoj.model.dto.question.QuestionEditRequest;
 import com.aneto.tindraoj.model.dto.question.QuestionQueryRequest;
 import com.aneto.tindraoj.model.dto.question.QuestionUpdateRequest;
+import com.aneto.tindraoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
+import com.aneto.tindraoj.model.dto.questionsubmit.QuestionSubmitRequest;
 import com.aneto.tindraoj.model.entity.Question;
+import com.aneto.tindraoj.model.entity.QuestionSubmit;
 import com.aneto.tindraoj.model.entity.User;
+import com.aneto.tindraoj.model.vo.QuestionSubmitVO;
 import com.aneto.tindraoj.model.vo.QuestionVO;
 import com.aneto.tindraoj.service.QuestionService;
+import com.aneto.tindraoj.service.QuestionSubmitService;
 import com.aneto.tindraoj.service.UserService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +47,9 @@ public class QuestionController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private QuestionSubmitService questionSubmitService;
 
 
     /**
@@ -282,6 +290,41 @@ public class QuestionController {
         }
         boolean result = questionService.updateById(question);
         return ResultUtils.success(result);
+    }
+
+
+    /**
+     * 题目提交
+     */
+    @PostMapping("/question_submit")
+    public BaseResponse<Long> questionSubmit(@RequestBody QuestionSubmitRequest questionSubmitAddRequest,
+                                             HttpServletRequest request) {
+        if (questionSubmitAddRequest == null || questionSubmitAddRequest.getQuestionId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 登录才能提交题目
+        final User loginUser = userService.getLoginUser(request);
+        long result = questionSubmitService.doQuestionSubmit(questionSubmitAddRequest, loginUser);
+        return ResultUtils.success(result);
+    }
+
+    /**
+     * 分页获取列表（仅管理员）
+     *
+     * @param questionSubmitQueryRequest
+     * @return
+     */
+    @PostMapping("/question_submit/list/page")
+    public BaseResponse<Page<QuestionSubmitVO>> listQuestionSubmitByPage(@RequestBody QuestionSubmitQueryRequest questionSubmitQueryRequest, HttpServletRequest request) {
+        long current = questionSubmitQueryRequest.getCurrent();
+        long size = questionSubmitQueryRequest.getPageSize();
+        // 从数据库中查询原始的题目提交分页信息
+        Page<QuestionSubmit> questionSubmitPage = questionSubmitService.page(new Page<>(current, size),
+                questionSubmitService.getQueryWrapper(questionSubmitQueryRequest));
+        final User loginUser = userService.getLoginUser(request);
+        // 返回脱敏信息
+        return ResultUtils.success(questionSubmitService.getQuestionSubmitVOPage(questionSubmitPage, loginUser));
+
     }
 
 }
