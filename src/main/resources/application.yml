@@ -93,4 +93,6 @@ knife4j:
 
 # sandbox配置
 sandbox:
-  type: test
+  host: 192.168.47.58
+  type: remote
+  way: docker

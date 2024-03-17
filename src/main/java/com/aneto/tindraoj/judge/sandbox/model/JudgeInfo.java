@@ -1,11 +1,17 @@
 package com.aneto.tindraoj.judge.sandbox.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 判题信息（内存、时间、执行信息）
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class JudgeInfo {
 
     /**
